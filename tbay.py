@@ -65,6 +65,11 @@ bid4 = Bid(price=40,users=kyle,items=baseball)
 session.add_all([tyler, lila, kyle, baseball, bid1, bid2, bid3, bid4])
 session.commit()
 
-
 #Perform a query to find out which user placed the highest 
+highBid = session.query(Bid.price).order_by(Bid.price.desc()).first()
+highBidUserID = session.query(Bid.user_id).filter(Bid.price==highBid[0]).first()
+highBidUser = session.query(User.username).filter(User.id==highBidUserID[0]).first()
 
+print("And the winner is: ")
+print(highBidUser[0])
+# select username from users where id = (select user_id from bids where price = (select max(price) from bids))
