@@ -54,8 +54,7 @@ lila = User(username="lila",password="thinkful")
 kyle = User(username="kyle",password="thinkful")
 
 #Make one user auction a baseball
-baseball = Item(name="baseball")
-tyler.items = baseball
+baseball = Item(name="baseball", users=tyler)
 
 #Have each other user place two bids on the baseball
 bid1 = Bid(price=10,users=lila,items=baseball)
@@ -63,7 +62,7 @@ bid2 = Bid(price=20,users=kyle,items=baseball)
 bid3 = Bid(price=30,users=lila,items=baseball)
 bid4 = Bid(price=40,users=kyle,items=baseball)
 
-session.add_all([tyler, lila, kyle, bid1, bid2, bid3, bid4])
+session.add_all([tyler, lila, kyle, baseball, bid1, bid2, bid3, bid4])
 session.commit()
 
 
